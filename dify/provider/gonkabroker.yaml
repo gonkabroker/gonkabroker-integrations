@@ -5,9 +5,9 @@ description:
   en_US: Open-source LLMs and text embeddings through Gonka Broker — an OpenAI-compatible API with predictable USD pricing and no crypto.
   zh_Hans: 通过 Gonka Broker 使用开源大模型与文本嵌入——兼容 OpenAI 的 API，价格以美元计且可预测，无需加密货币。
 icon_small:
-  en_US: icon.svg
+  en_US: icon.png
 icon_large:
-  en_US: icon.svg
+  en_US: icon.png
 background: "#EFF6FF"
 help:
   title:

@@ -8,7 +8,7 @@ description:
   en_US: Open-source LLMs (MiniMax M2, Kimi K2, and more) and BGE-M3 text embeddings through Gonka Broker — an OpenAI-compatible API with predictable USD pricing and no crypto.
   zh_Hans: 通过 Gonka Broker 使用开源大模型（MiniMax M2、Kimi K2 等）及 BGE-M3 文本嵌入——兼容 OpenAI 的 API，价格以美元计且可预测，无需加密货币。
 created_at: "2026-06-26T00:00:00Z"
-icon: icon.svg
+icon: icon.png
 resource:
   memory: 1048576
   permission:
