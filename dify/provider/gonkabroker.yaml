@@ -1,0 +1,180 @@
+provider: gonkabroker
+label:
+  en_US: Gonka Broker
+description:
+  en_US: Open-source LLMs and text embeddings through Gonka Broker — an OpenAI-compatible API with predictable USD pricing and no crypto.
+  zh_Hans: 通过 Gonka Broker 使用开源大模型与文本嵌入——兼容 OpenAI 的 API，价格以美元计且可预测，无需加密货币。
+icon_small:
+  en_US: icon.svg
+icon_large:
+  en_US: icon.svg
+background: "#EFF6FF"
+help:
+  title:
+    en_US: Get your API key from Gonka Broker
+    zh_Hans: 从 Gonka Broker 获取 API Key
+  url:
+    en_US: https://app.gonkabroker.com/
+supported_model_types:
+  - llm
+  - text-embedding
+configurate_methods:
+  - customizable-model
+model_credential_schema:
+  model:
+    label:
+      en_US: Model Name
+      zh_Hans: 模型名称
+    placeholder:
+      en_US: e.g. MiniMaxAI/MiniMax-M2.7
+      zh_Hans: 例如 MiniMaxAI/MiniMax-M2.7
+  credential_form_schemas:
+    - variable: api_key
+      label:
+        en_US: API Key
+      type: secret-input
+      required: true
+      placeholder:
+        en_US: Enter your gnk-prx- API key
+        zh_Hans: 输入您的 gnk-prx- API Key
+    - variable: display_name
+      label:
+        en_US: Model display name
+        zh_Hans: 模型显示名称
+      type: text-input
+      required: false
+      placeholder:
+        en_US: How the model appears in the interface (optional)
+        zh_Hans: 模型在界面中的显示名称（可选）
+    - variable: context_size
+      label:
+        en_US: Model context size
+        zh_Hans: 模型上下文长度
+      type: text-input
+      required: true
+      default: "131072"
+      placeholder:
+        en_US: e.g. 131072 for chat models, 8192 for BAAI/bge-m3
+        zh_Hans: 对话模型如 131072，BAAI/bge-m3 为 8192
+    - variable: max_tokens_to_sample
+      show_on:
+        - variable: __model_type
+          value: llm
+      label:
+        en_US: Upper bound for max tokens
+        zh_Hans: 最大 token 上限
+      type: text-input
+      required: false
+      default: "8192"
+    - variable: agent_thought_support
+      show_on:
+        - variable: __model_type
+          value: llm
+      label:
+        en_US: Thinking mode support
+        zh_Hans: 思考模式支持
+      type: select
+      required: false
+      default: supported
+      options:
+        - value: supported
+          label:
+            en_US: Both modes
+            zh_Hans: 两种模式都支持
+        - value: only_thinking_supported
+          label:
+            en_US: Only thinking mode
+            zh_Hans: 仅支持思考模式
+        - value: not_supported
+          label:
+            en_US: Only non-thinking mode
+            zh_Hans: 仅支持非思考模式
+      help:
+        en_US: Most Gonka models (MiniMax M2, Kimi K2) emit reasoning. "Both modes" exposes a thinking toggle.
+        zh_Hans: 多数 Gonka 模型（MiniMax M2、Kimi K2）会输出推理内容。“两种模式”会显示思考模式开关。
+    - variable: function_calling_type
+      show_on:
+        - variable: __model_type
+          value: llm
+      label:
+        en_US: Function calling
+        zh_Hans: 函数调用类型
+      type: select
+      required: false
+      default: tool_call
+      options:
+        - value: tool_call
+          label:
+            en_US: Tool Call
+            zh_Hans: 工具调用
+        - value: function_call
+          label:
+            en_US: Function Call
+            zh_Hans: 函数调用
+        - value: no_call
+          label:
+            en_US: Not Support
+            zh_Hans: 不支持
+    - variable: stream_function_calling
+      show_on:
+        - variable: __model_type
+          value: llm
+      label:
+        en_US: Stream function calling
+        zh_Hans: 流式函数调用
+      type: select
+      required: false
+      default: supported
+      options:
+        - value: supported
+          label:
+            en_US: Support
+            zh_Hans: 支持
+        - value: not_supported
+          label:
+            en_US: Not Support
+            zh_Hans: 不支持
+    - variable: vision_support
+      show_on:
+        - variable: __model_type
+          value: llm
+      label:
+        en_US: Vision support
+        zh_Hans: 视觉支持
+      type: select
+      required: false
+      default: no_support
+      options:
+        - value: support
+          label:
+            en_US: Support
+            zh_Hans: 支持
+        - value: no_support
+          label:
+            en_US: Not Support
+            zh_Hans: 不支持
+    - variable: structured_output_support
+      show_on:
+        - variable: __model_type
+          value: llm
+      label:
+        en_US: Structured output
+        zh_Hans: 结构化输出
+      type: select
+      required: false
+      default: supported
+      options:
+        - value: supported
+          label:
+            en_US: Support
+            zh_Hans: 支持
+        - value: not_supported
+          label:
+            en_US: Not Support
+            zh_Hans: 不支持
+extra:
+  python:
+    provider_source: provider/gonkabroker.py
+    model_sources:
+      - models/llm/llm.py
+      - models/text_embedding/text_embedding.py
